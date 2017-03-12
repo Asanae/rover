@@ -1,2 +1,2 @@
-gcc -Wall -o main main.c -lwiringPi -std=c99
-sudo ./main
+gcc -Wall -o $1 $1.c -lwiringPi -std=c99
+sudo ./$1
