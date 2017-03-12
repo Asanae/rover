@@ -1,4 +1,5 @@
-//#include <wiringPi.h>
+#include <wiringPi.h>
+
 #define DEL 50
 #define	ENS
 #define END
@@ -8,26 +9,32 @@
 void test () {
 	for(int i = 0;i < 8;i++) {
 		pinMode (i, OUTPUT);
-		digitalWrite (i, HIGH); delay (DEL);
-		digitalWrite (i, LOW); delay (DEL);
+		digitalWrite (i, HIGH);
+		digitalWrite (i, LOW);
+	}
+}
+
+void clear () {
+	for(int i = 0;i < 8;i++) {
+		pinMode (i, OUTPUT);
+		digitalWrite (i, LOW);
 	}
 }
 
 int main (void) {
 	wiringPiSetup ();
+	clear ();
+	
 	while (1) {
-		int i = 0;
-		int n = 0;
+		int pin = 0;
 		int mode = 0;
-		scanf("%d\n", i);
-		scanf("%d\n", n);
-		pinMode (i, OUTPUT);
-		if (n > 0) {
-			mode = HIGH;
-		} else {
-			mode = LOW;
-		}
-		digitalWrite (i, mode);
+		printf("\n\npin, mode: ");
+		scanf("%d %d", &pin, & mode);
+		//scanf("%d\n", &mode);
+		printf("pin: %d, mode %d\n", pin, mode);
+
+		pinMode (pin, OUTPUT);
+		digitalWrite (pin, mode);
 	}
 	return 0;
 }
