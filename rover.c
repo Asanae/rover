@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <wiringPi.h> /*
+//#include <wiringPi.h> 
+/*
 
 #define OUTPUT 1
 #define HIGH 1
@@ -93,11 +94,11 @@ int main (void) {
 		printf("\n\n command: f b l r (forward, back, left, right)\n");
 		scanf("%c", &c);
 
-		clear ();
-		if (c == 'f') { printf("Forward\n"); m_forward();}
-		if (c == 'b') { printf("Back\n"); m_back();}
-		if (c == 'l') { printf("Left\n"); m_left();}
-		if (c == 'r') { printf("Right\n"); m_right();}
+		if (c == 'f') { printf("Forward\n");clear (); m_forward();}
+		if (c == 'b') { printf("Back\n");clear (); m_back();}
+		if (c == 'l') { printf("Left\n");clear (); m_left();}
+		if (c == 'r') { printf("Right\n");clear (); m_right();}
+        if (c == 'q') { printf("Exit...\n"); clear ();}
 	}
 	return 0;
 }
