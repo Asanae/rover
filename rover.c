@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <wiringPi.h> 
+#include <wiringPi.h> 
 /*
 
 #define OUTPUT 1
@@ -23,6 +23,7 @@ void wiringPiSetup() {
 	printf("initComplete\n");
 }
 //*/
+#define TURN_CENTRE_TIME 500
 
 void test () {
 	for(int i = 0;i < 8;i++) {
@@ -90,15 +91,31 @@ int main (void) {
 
 	while (1) {
 		char c;
-
+        char turn;
+        
 		printf("\n\n command: f b l r (forward, back, left, right)\n");
 		scanf("%c", &c);
-
-		if (c == 'f') { printf("Forward\n");clear (); m_forward();}
-		if (c == 'b') { printf("Back\n");clear (); m_back();}
-		if (c == 'l') { printf("Left\n");clear (); m_left();}
-		if (c == 'r') { printf("Right\n");clear (); m_right();}
-        if (c == 'q') { printf("Exit...\n"); clear ();}
+        
+		if (c == 'l') { printf("Left\n");turn=c;m_left();}
+		if (c == 'r') { printf("Right\n");turn=c;m_right();}
+		if (c == 'f') { printf("Forward\n");    m_forward();}
+		if (c == 'b') { printf("Back\n");       m_back();}
+        if (c == 'h') { printf("Halt\n");turn=c;clear();}
+        if (c == 'e') { printf("Exit...\n");    clear(); return 0;}
+        
+        if (c == 's') { 
+            printf("Straight\n");
+            if (turn = c) {m_right(); delay (TURN_CENTRE_TIME);}
+            else {          m_left(); delay (TURN_CENTRE_TIME);}
+        }
+        
+        if (c == 'l' || c == 'r') {            
+            if (digitalRead(0) == 1) {
+                digitalWrite(2, LOW);
+            } else {
+                digitalWrite(2, HIGH);
+            }
+        }
 	}
 	return 0;
 }
