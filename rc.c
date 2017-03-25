@@ -118,7 +118,12 @@ int main (void) {
 	m_init();
     
 	while (1) {
-        run();
+        //run();
+        for (int i = 0; i < 8; i++) {
+            printf("pin %d", i);
+                digitalWrite(i, HIGH); delay(1000);
+                digitalWrite(i, LOW); delay(100);
+        }
 	}
 	return 0;
 }
