@@ -1,37 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <wiringPi.h> 
-/*
-
-#define OUTPUT 1
-#define HIGH 1
-#define LOW 0
-
-void digitalWrite(int i, int n) {
-	if (n < 1) {
-		printf("%d OUTPUT LOW\n", i);
-	} else {
-		printf("%d OUTPUT HIGH\n", i);
-	}
-}
-
-void pinMode (int pin, int out) {
-	printf ("%d OUTPUT\n", pin);
-}
-
-void wiringPiSetup() {
-	printf("initComplete\n");
-}
-//*/
-#define TURN_CENTRE_TIME 500
-
-void test () {
-	for(int i = 0;i < 8;i++) {
-		pinMode (i, OUTPUT);
-		digitalWrite (i, HIGH);
-		digitalWrite (i, LOW);
-	}
-}
 void m_init() {
     printf("\n\n command: f b l r (forward, back, left, right)\n");
     
@@ -57,34 +26,6 @@ void writePin () {
 
 	pinMode (pin, OUTPUT);
 	digitalWrite (pin, mode);
-}
-
-void m_right() {
-	digitalWrite(2, LOW);
-	digitalWrite(1, LOW);
-	digitalWrite(3, LOW);
-	digitalWrite(2, HIGH);
-}
-
-void m_left() {
-	digitalWrite(2, LOW);
-	digitalWrite(1, HIGH);
-	digitalWrite(3, HIGH);
-	digitalWrite(2, HIGH);
-}
-
-void m_forward() {
-	digitalWrite(6, LOW);
-	digitalWrite(4, HIGH);
-	digitalWrite(5, HIGH);
-	digitalWrite(6, HIGH);
-}
-
-void m_back() {
-	digitalWrite(6, LOW);
-	digitalWrite(4, LOW);
-	digitalWrite(5, LOW);
-	digitalWrite(6, HIGH);
 }
 
 void run () {
@@ -113,17 +54,27 @@ void run () {
             }
         }
 }
+
+void testPin() {
+    printf("pin0\n");
+    digitalWrite(0 , HIGH); delay(1000);
+    digitalWrite(0 , LOW); delay(100);
+    printf("pin1\n");
+    digitalWrite(1 , HIGH); delay(1000);
+    digitalWrite(1 , LOW); delay(100);
+    printf("pin2\n");
+    digitalWrite(2 , HIGH); delay(1000);
+    digitalWrite(2 , LOW); delay(100);
+    printf("pin4\n");
+    digitalWrite(4 , HIGH); delay(1000);
+    digitalWrite(4 , LOW); delay(100);
+}
 int main (void) {
 	wiringPiSetup ();
 	m_init();
     
 	while (1) {
-        //run();
-        for (int i = 0; i < 8; i++) {
-            printf("pin %d", i);
-                digitalWrite(i, HIGH); delay(1000);
-                digitalWrite(i, LOW); delay(100);
-        }
+        testPin();
 	}
 	return 0;
 }
